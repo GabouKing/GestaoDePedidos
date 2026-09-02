@@ -1,5 +1,6 @@
 package org.example.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
@@ -15,60 +16,35 @@ public class Product {
         this.price = price;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
     public static List<Product> populateProducts() {
-        return List.of(
-                new Product(1L, "Notebook Dell", "Eletrônicos", 4500.00),
-                new Product(2L, "Mouse Logitech", "Eletrônicos", 250.00),
-                new Product(3L, "Teclado Mecânico", "Eletrônicos", 450.00),
-                new Product(4L, "Cadeira Gamer", "Móveis", 1200.00),
-                new Product(5L, "Mesa Escritório", "Móveis", 800.00),
-                new Product(6L, "Monitor 27", "Eletrônicos", 1800.00),
-                new Product(7L, "Livro Java", "Livros", 120.00),
-                new Product(8L, "Clean Code", "Livros", 150.00),
-                new Product(9L, "Headset", "Eletrônicos", 600.00),
-                new Product(10L, "Mochila", "Acessórios", 300.00)
-        );
+        String[] names = {"Notebook Dell", "Mouse Logitech", "Teclado Mecânico", "Cadeira Gamer",
+                "Mesa Escritório", "Monitor 27", "Livro Java", "Clean Code", "Headset", "Mochila"};
+        String[] categories = {"Eletrônicos", "Eletrônicos", "Eletrônicos", "Móveis", "Móveis",
+                "Eletrônicos", "Livros", "Livros", "Eletrônicos", "Acessórios"};
+        double[] prices = {4500.00, 250.00, 450.00, 1200.00, 800.00,
+                1800.00, 120.00, 150.00, 600.00, 300.00};
+
+        List<Product> products = new ArrayList<>(100);
+        for (int i = 0; i < 100; i++) {
+            int model = i % names.length;
+            products.add(new Product((long) i + 1, names[model] + " " + (i + 1),
+                    categories[model], prices[model]));
+        }
+        return products;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", price=" + price +
-                '}';
+        return "Product{" + "id=" + id + ", name='" + name + '\'' +
+                ", category='" + category + '\'' + ", price=" + price + '}';
     }
 }
